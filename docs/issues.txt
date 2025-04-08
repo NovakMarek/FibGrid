@@ -1,0 +1,26 @@
+
+1. Creating a Fibonacci sequence array up to, let’s say, 2000 is not a good idea, since we only need the sequence up to a given number—specifically, the last number in the sequence we are checking.
+
+2. The findFibonacciInGrid function initially returned a new grid because, instead of pushing items to fibonacciCells, all Fibonacci cells were set to null, and the entire function returned this updated grid, which triggered a re-render of the grid in the UI.
+
+3. Since color highlighting is part of the solution, the findFibonacciInGrid function needed to be modified to track coordinates (column index and row index) that would then be highlighted as green cells and subsequently set to null.
+
+4. findFibonacciInGrid was originally designed to iterate through the inner arrays of the grid and identify every possible Fibonacci sequence. However, this approach was flawed because it reused some numbers in multiple separate Fibonacci sequences.
+To fix this, a "stepper" mechanism was implemented using a while loop. When a Fibonacci sequence is detected, the next check jumps ahead by 5 positions to avoid duplicates (if there is a room for such a jump).
+
+Example for 3 consecutive sequence numbers:
+
+Row has: 
+```
+1 1 2 3 5
+```
+Fibonacci sequence detected for:
+```
+1 1 2
+```
+and also for:
+```
+2 3 5
+```
+
+This solution used 2 as a duplicate value for two different sequences.
